@@ -1,0 +1,82 @@
+body {
+    font-family: Arial, sans-serif;/*默认字体*/
+    background-color: #84bfe1c1;
+    display: flex;/*启用 Flexbox 布局模式*/
+    justify-content: center;/*将 Flexbox 容器中的内容水平居中*/
+    align-items: center;/*将 Flexbox 容器中的内容垂直居中*/
+    height: 80vh;
+  }
+
+/* 白色表单容器 */
+.all-form {
+    background-color: #fff;
+    padding: 30px;/*在容器内部四周添加内边距*/
+    border-radius: 8px;/*圆角*/
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);/*添加阴影效果*/
+    width: 320px;/*容器宽度*/
+    box-sizing: border-box;/* 盒模型计算方式：包含padding和border在内的宽度 */
+  }
+
+.select-buttons {
+    display: flex;
+    justify-content: space-between;/*在按钮之间平均分配空间*/
+    margin-bottom: 10px;/* 底部外边距10px */
+    cursor: pointer;/*鼠标悬停时显示为手型*/
+}
+
+/* 选择按钮的悬停状态 */
+.select-buttons button:hover {
+    background-color: #007bff;/*设置鼠标悬停时按钮的背景颜色*/
+}
+
+.select-buttons button{
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background-color: #ddd;
+    cursor: pointer;
+    border-radius: 4px;/* 圆角 */
+    margin: 0 4px;
+  }
+
+/* 激活状态的选择按钮 */
+.select-buttons button.active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* 表单组样式（包含label和input的组合） */
+.form-group {
+    margin-bottom: 10px; /* 底部外边距10px */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 92%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 9px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;/*鼠标悬停时显示为手型*/
+}
+
+input[type="submit"]:hover {
+    background-color: #0455ac;/*设置鼠标悬停时按钮的背景颜色*/
+}
+
+/* 密码输入框专用样式 */
+input[type="password"] {
+    letter-spacing: 1px; /* 增加字符间距使圆点更清晰 */
+}
