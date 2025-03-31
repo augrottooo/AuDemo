@@ -1,0 +1,55 @@
+-- 创建名为 select_course_system 数据库
+CREATE DATABASE select_course_system;
+
+-- 使用 select_course_system 数据库
+USE select_course_system;
+
+-- 创建用户信息表，用于存储用户的基本信息
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    `password` VARCHAR(255) NOT NULL,
+    `role` ENUM('student', 'admin') NOT NULL
+);
+
+-- 创建学生信息表，用于存储学生的基本信息
+CREATE TABLE students (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    stu_id VARCHAR(50) NOT NULL UNIQUE,
+    stu_name VARCHAR(100) NOT NULL,
+    phone VARCHAR(15),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+-- 创建课程表，用于存储课程信息
+CREATE TABLE courses (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    course_name VARCHAR(100) NOT NULL,
+    credit INT NOT NULL,
+    nownum INT DEFAULT 0 NOT NULL, -- 已选学生人数
+    sumnum INT NOT NULL, -- 限选学生人数
+    teacher VARCHAR(20) NOT NULL, -- 授课教师
+    course_time VARCHAR(100) NOT NULL, -- 上课时间
+    course_place VARCHAR(100) NOT NULL, -- 上课地点
+    course_id VARCHAR(10) NOT NULL UNIQUE -- 添加唯一约束
+);
+
+-- 创建选课表，用于存储课程信息
+CREATE TABLE student_courses (
+    stu_id VARCHAR(50) NOT NULL UNIQUE,
+    stu_name VARCHAR(100) NOT NULL,
+    course_id VARCHAR(10) NOT NULL,
+    PRIMARY KEY (stu_id, course_id),
+    FOREIGN KEY (stu_id) REFERENCES students(stu_id),
+    FOREIGN KEY (course_id) REFERENCES courses(course_id)
+);
+
+-- 插入课程数据
+INSERT INTO courses (id, course_name, credit, nownum, sumnum, teacher, course_time, course_place, course_id) VALUES
+(1, '高等数学', 5, 0, 100, '张秋实', '周一 8:00-10:00', '教一 321', '2025001'),
+(2, '高等数学', 5, 0, 100, '宋浩', '周二 10:00-12:00', '教一 204', '2025002'),
+(3, '大学物理', 3, 0, 40, '李敖亨', '周三 14:00-16:00', '教三 206', '2025003'),
+(4, 'C语言程序设计', 3, 0, 45, '赵本刚', '周四 8:00-10:00', '实二 404', '2025004'),
+(5, '大学英语', 2, 0, 55, '刘力宏', '周五 10:00-12:00', '教二 220', '2025005'),
+(6, '中国近代史', 2, 0, 30, '陈华英', '周五 14:00-16:00', '教四 305', '2025006');
